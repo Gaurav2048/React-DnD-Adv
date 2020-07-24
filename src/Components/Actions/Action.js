@@ -11,7 +11,7 @@ const Action = () => {
         display: 'flex',
         flexDirection: 'row',
         width: '20%',
-        justifyContent: 'space-evenly',
+        gap: '10px',
       }}
     >
       <Move />

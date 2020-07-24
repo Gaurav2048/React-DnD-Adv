@@ -1,4 +1,5 @@
 import React from 'react';
+import Action from '../Actions/Action';
 
 const Topic = ({
   chapterIndex,
@@ -24,6 +25,7 @@ const Topic = ({
       }}
       onDragEnd={onDragEnd}
     >
+      <Action />
       <h3> {name} </h3>
     </div>
   );
