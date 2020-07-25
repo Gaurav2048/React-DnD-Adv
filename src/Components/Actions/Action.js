@@ -16,7 +16,12 @@ const Action = ({ data, setData, chapterIndex, topicIndex }) => {
     >
       <Move />
       <Outdent />
-      <Indent />
+      <Indent
+        data={data}
+        setData={setData}
+        chapterIndex={chapterIndex}
+        topicIndex={topicIndex}
+      />
       <Delete
         data={data}
         setData={setData}
