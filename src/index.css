@@ -28,6 +28,16 @@ h2 {
   text-align: left;
 }
 
+.topic_name {
+  font-size: 12px;
+  font-weight: bold;
+  width: 80%;
+  border: 0px;
+  padding: 6px;
+  color: #888;
+  margin-left: 25px;
+}
+
 .topic h3 {
   margin-left: 25px;
 }
@@ -44,6 +54,14 @@ h2 {
   font-weight: bolder;
   text-transform: uppercase;
   color: rgba(0, 0, 0, 0.2);
+}
+
+.chapter_name {
+  border: 0px;
+  padding: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  color: lightskyblue;
 }
 
 ::placeholder {
@@ -79,6 +97,28 @@ input:focus {
   font-weight: 400;
   color: #888;
   font-size: 300;
+  border: 0;
+}
+
+.add_chapter {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: lightblue;
+  color: white;
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 20%;
+}
+
+.add_chapter:hover {
+  border: 1px solid #cbcbcb;
+}
+.add_chapter:active {
   border: 0;
 }
 
