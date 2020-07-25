@@ -68,6 +68,7 @@ const App = () => {
   };
 
   const handleTopicDragEnd = (e) => {
+    e.preventDefault();
     setIsChapterDragging(true);
     console.log(draggingTopic.current, dragOverTopic.current);
     let dataCopy = JSON.parse(JSON.stringify(data));
@@ -160,24 +161,32 @@ const App = () => {
     if (topic === '') {
       return;
     }
-    console.log(chapterIndex, topic);
-    let copyData = JSON.parse(JSON.stringify(data));
-    // let standard = copyData[0];
-    // let chapter = standard.content[chapterIndex];
-    // const id = new Date().getTime();
-    // const newTopic = { id, name: topic };
-    // const topics = chapter.topics;
-    // topics.push(newTopic);
-    // chapter.topics = topics;
-    // standard.content[chapterIndex] = chapter;
-    // copyData[0] = standard;
-    // console.log(copyData);
+
+    const copyData = [...data];
     copyData[0].content[chapterIndex].topics.push({
-      id: new Date().getTime(),
+      id: Math.floor(Math.random() * 10000),
       name: topic,
     });
     setData(copyData);
     cb();
+  };
+
+  const onTopicChange = (topic, chapterIndex, topicIndex) => {
+    if (topic === undefined) return;
+    const copyData = JSON.parse(JSON.stringify(data));
+    copyData[0].content[chapterIndex].topics[topicIndex].name = topic;
+    setData(copyData);
+    console.log(copyData);
+  };
+
+  const changeSubjectName = (title, chapterIndex) => {
+    console.log(title, chapterIndex);
+    if (title === undefined) {
+      return;
+    }
+    const copyData = JSON.parse(JSON.stringify(data));
+    copyData[0].content[chapterIndex].chapterTitle = title;
+    setData(copyData);
   };
 
   return (
@@ -185,33 +194,39 @@ const App = () => {
       <Header subject={subject} setSubject={setSubject} />
       <ListItem>
         <ListItem.SubHeader data={data} setStandard={setData} />
-        {data &&
-          data[0].content.map((chapter, chapterIndex) => (
-            <ListItem.Chapter
-              chapterTitle={chapter.chapterTitle}
-              key={chapterIndex}
-              chapterIndex={chapterIndex}
-              onDragStart={handleChapterDragStart}
-              onDragEnd={handleChapterDragEnd}
-              onDragEnter={handleChapterDragEnter}
-            >
-              {chapter.topics.map((topic, topicIndex) => (
-                <ListItem.Chapter.Topic
-                  key={topicIndex}
-                  name={topic.name}
-                  chapterIndex={chapterIndex}
-                  topicIndex={topicIndex}
-                  onDragStart={handleTopicDragStart}
-                  onDragEnd={handleTopicDragEnd}
-                  onDragEnter={handleTopicDragEnter}
-                />
-              ))}
-              <ListItem.Chapter.AddTopic
+        {data[0].content.map((chapter, chapterIndex) => (
+          <ListItem.Chapter
+            chapterTitle={chapter.chapterTitle}
+            key={chapterIndex}
+            data={data}
+            setData={setData}
+            chapterIndex={chapterIndex}
+            onDragStart={handleChapterDragStart}
+            onDragEnd={handleChapterDragEnd}
+            changeSubjectName={changeSubjectName}
+            onDragEnter={handleChapterDragEnter}
+          >
+            {chapter.topics.map((topic, topicIndex) => (
+              <ListItem.Chapter.Topic
+                key={topicIndex}
+                name={topic.name}
+                data={data}
+                setData={setData}
                 chapterIndex={chapterIndex}
-                onTopicEntered={onTopicEntered}
+                topicIndex={topicIndex}
+                onDragStart={handleTopicDragStart}
+                onDragEnd={handleTopicDragEnd}
+                onDragEnter={handleTopicDragEnter}
+                onTopicChange={onTopicChange}
               />
-            </ListItem.Chapter>
-          ))}
+            ))}
+            <ListItem.Chapter.AddTopic
+              chapterIndex={chapterIndex}
+              onTopicEntered={onTopicEntered}
+            />
+          </ListItem.Chapter>
+        ))}
+        <ListItem.AddChapter data={data} setData={setData} />
       </ListItem>
     </div>
   );
