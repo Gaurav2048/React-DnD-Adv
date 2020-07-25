@@ -4,7 +4,7 @@ import Indent from './Indent';
 import Outdent from './Outdent';
 import Delete from './Delete';
 
-const Action = () => {
+const Action = ({ data, setData, chapterIndex, topicIndex }) => {
   return (
     <div
       style={{
@@ -17,7 +17,12 @@ const Action = () => {
       <Move />
       <Outdent />
       <Indent />
-      <Delete />
+      <Delete
+        data={data}
+        setData={setData}
+        chapterIndex={chapterIndex}
+        topicIndex={topicIndex}
+      />
     </div>
   );
 };
