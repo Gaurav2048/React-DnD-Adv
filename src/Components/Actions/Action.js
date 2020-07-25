@@ -15,7 +15,12 @@ const Action = ({ data, setData, chapterIndex, topicIndex }) => {
       }}
     >
       <Move />
-      <Outdent />
+      <Outdent
+        data={data}
+        setData={setData}
+        chapterIndex={chapterIndex}
+        topicIndex={topicIndex}
+      />
       <Indent
         data={data}
         setData={setData}

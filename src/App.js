@@ -16,48 +16,7 @@ const App = () => {
   const [data, setData] = useState([
     {
       standard: '',
-      content: [
-        {
-          id: 0,
-          chapterTitle: 'Number System',
-          topics: [
-            {
-              id: 'Red',
-              name: 'Introduction',
-            },
-            {
-              id: 'Green',
-              name: 'Addition and multipliation theorams',
-            },
-            {
-              id: 'Blue',
-              name: 'Power theorams',
-            },
-            {
-              id: 'Yellow',
-              name: 'Logarithim and exponents',
-            },
-          ],
-        },
-        {
-          id: 1,
-          chapterTitle: 'Geometry',
-          topics: [
-            {
-              id: 'Black',
-              name: 'Introduction',
-            },
-            {
-              id: 'White',
-              name: 'Circle and Ellipses',
-            },
-            {
-              id: 'Orange',
-              name: 'Lines and graphs',
-            },
-          ],
-        },
-      ],
+      content: [],
     },
   ]);
 
