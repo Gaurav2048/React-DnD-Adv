@@ -112,6 +112,7 @@ input:focus {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  margin-top: 10px;
   margin-left: 20%;
 }
 
