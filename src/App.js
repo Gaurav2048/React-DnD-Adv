@@ -150,7 +150,12 @@ const App = () => {
 
   return (
     <div>
-      <Header subject={subject} setSubject={setSubject} />
+      <Header
+        subject={subject}
+        setSubject={setSubject}
+        data={data}
+        setData={setData}
+      />
       <ListItem>
         <ListItem.SubHeader data={data} setStandard={setData} />
         {data[0].content.map((chapter, chapterIndex) => (
