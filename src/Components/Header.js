@@ -53,7 +53,13 @@ const Header = ({ data, setData, subject, setSubject }) => {
     setData(storedContent);
   };
 
-  const exportData = (e) => {};
+  const exportData = (e) => {
+    const element = document.createElement('a');
+    const file = new Blob([JSON.stringify(data)], { type: 'text/plain' });
+    element.href = URL.createObjectURL(file);
+    element.download = 'curriculum.txt';
+    element.click();
+  };
 
   return (
     <div className="header">
