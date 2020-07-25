@@ -11,7 +11,11 @@ const AddChapter = ({ data, setData }) => {
     copyData[0].content.push(newTopic);
     setData(copyData);
   };
-  return <div className="add_chapter" onClick={addChapter}></div>;
+  return (
+    <div className="add_chapter" onClick={addChapter}>
+      +
+    </div>
+  );
 };
 
 export default AddChapter;
