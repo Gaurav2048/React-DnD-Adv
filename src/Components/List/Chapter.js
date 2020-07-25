@@ -7,8 +7,11 @@ const Chapter = ({
   chapterTitle,
   chapterIndex,
   onDragStart,
+  data,
+  setData,
   onDragEnd,
   onDragEnter,
+  changeSubjectName,
   ...props
 }) => {
   return (
@@ -21,12 +24,20 @@ const Chapter = ({
         }}
         onDragStart={(e) => onDragStart(e, chapterIndex)}
         onDragEnd={onDragEnd}
+        onDragOver={(e) => e.preventDefault()}
         onDragEnter={(e) => {
           onDragEnter(e, chapterIndex);
         }}
       >
-        <Action />
-        <h2> {chapterTitle} </h2>
+        <Action data={data} setData={setData} chapterIndex={chapterIndex} />
+        <input
+          className="chapter_name"
+          value={chapterTitle || ''}
+          placeholder="Enter Chapter Name"
+          onChange={(e) => {
+            changeSubjectName(e.target.value, chapterIndex);
+          }}
+        />
       </div>
       {props.children}
     </div>

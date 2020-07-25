@@ -5,11 +5,13 @@ const Topic = ({
   chapterIndex,
   topicIndex,
   onDragStart,
+  data,
+  setData,
   name,
   onDragEnd,
   onDragEnter,
+  onTopicChange,
 }) => {
-  console.log(chapterIndex, topicIndex);
   return (
     <div
       className="draggable topic"
@@ -23,10 +25,23 @@ const Topic = ({
       onDragEnter={(e) => {
         onDragEnter(e, { chapterIndex, topicIndex });
       }}
+      onDragOver={(e) => e.preventDefault()}
       onDragEnd={onDragEnd}
     >
-      <Action />
-      <h3> {name} </h3>
+      <Action
+        data={data}
+        setData={setData}
+        chapterIndex={chapterIndex}
+        topicIndex={topicIndex}
+      />
+      <input
+        value={name || ''}
+        className="topic_name"
+        placeholder="Topic name"
+        onChange={(e) => {
+          onTopicChange(e.target.value, chapterIndex, topicIndex);
+        }}
+      />
     </div>
   );
 };
